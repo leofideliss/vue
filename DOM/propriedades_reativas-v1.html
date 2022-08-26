@@ -1,0 +1,14 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+<div id="app">
+    <input type="text" name="" id="" v-model="titulo"> <!--permite fazer um two way data binding que seria o valor ser alterado nos dois sentidos, outra solução é utilizar um v-bind:value e um v-on:input = recebendo o valor digitado-->
+    <span>{{titulo}}</span>
+</div>
+
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+      titulo:"Testando Vue Js"
+        },
+    })
+</script>

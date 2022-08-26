@@ -1,0 +1,22 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+<div id="app">
+    <p v-once>{{titulo}}</p> <!-- o v-once faz com que a variavel seja interpretada apenas uma vez , apos isso ela para de ser monitorada-->
+    <p>{{ saudacao()}}</p>
+    <p> <a v-bind:href="link">Google</a></p> <!-- o v-bind é usado para inserir a tag html usando os valores do vue-->
+    <p v-html="linkHtml"></p>
+</div>
+
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+        titulo:"Testando Vue Js",
+        link:"https://www.google.com",
+        linkHtml: "<a href='https://www.google.com'> Google </a>"
+        },methods: {
+            saudacao(){
+             return this.titulo = "alterando o valor de titulo"
+            }
+        },
+    })
+</script>

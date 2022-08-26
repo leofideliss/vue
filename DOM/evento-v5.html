@@ -1,0 +1,37 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+
+
+<div id="app">
+    <p>{{contador}}</p>
+    <button v-on:click="somar(10,$event)">Somar</button>
+    <p v-on:mousemove="atualizarXY"> Mouse X:{{x}} - Y:{{y}}
+        <span v-on:mousemove.stop>Parar a propragação</span> <!-- Modificador de evento, stop = para a propagação do evento pai neste elemento-->
+    </p>
+    <a v-on:click.prevent href="http://www.google.com.br">Google</a> <!--Prevent outro modificador de evento , prevent = previne que o elemento execute sua ação padrão -->
+<hr>
+    <input type="text" name="" id="" v-on:keyup="exibirAlerta"> <!-- Modificador de evento para teclar keyup.enter = só dispara a função quando apertar a tecla enter , keyup.enter.alt = encadear teclas faz com que só funcionem quando apertadas simultaneamente -->
+</div>
+
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            contador:0,
+            x:0,
+            y:0,
+        },
+        methods: {
+            somar(p , event){
+                console.log(event)
+                this.contador += p
+            },
+            atualizarXY(event){
+                this.x = event.clientX
+                this.y = event.clientY
+            },
+            exibirAlerta(){
+                alert("Alertando!")
+            }
+        },
+    })
+</script>

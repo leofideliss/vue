@@ -1,0 +1,46 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+
+<div id="app">
+    <ul>
+        <li v-for="cor in cores">{{cor}}</li>
+        <!-- Primeiro valor o conteúdo o segundo item é sempre o indice independente do nome-->
+    </ul>
+
+    <hr>
+
+    <ul>
+        <li v-for="pessoa in pessoas">{{pessoa.name}} - {{pessoa.apelido}} - {{pessoa.idade}} - {{pessoa.peso}}</li>
+    </ul>
+
+    <ul>
+        <li v-for="pessoa in pessoas">{{pessoa.name}} - {{pessoa.apelido}} - {{pessoa.idade}} - {{pessoa.peso}}</li>
+    </ul>
+
+    <ul>
+        <li v-for="n in 10">{{n}}</li>
+    </ul>
+
+    <!-- Utilizando o a :key para auxiliar o Vue no controle da lista-->
+
+    <div v-for="pessoa in pessoas">
+        <span v-for="(valor,chave,index) in pessoa" :key="chave">
+            <p>{{chave}}</p>
+            <p>{{valor}}</p>
+            <p>{{index}}</p>
+        </span>
+    </div>
+
+    
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            cores: ['azul', 'verde', 'vermelho', 'rosa'],
+            pessoas: [{ name: 'Leonardo', apelido: 'Leo', idade: 23, peso: 77.5 },
+            { name: 'Luiza Sanches', apelido: "Lu", idade: 24, peso: 50.5 }]
+        }
+    })
+</script>

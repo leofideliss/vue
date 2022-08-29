@@ -1,0 +1,25 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+
+<div id="app">
+    <ul>
+        <li v-for="cor in cores">{{cor}}</li> <!-- Primeiro valor o conteúdo o segundo item é sempre o indice independente do nome-->
+    </ul>
+
+    <template v-for="(cor,i) in cores">
+        <h1 >
+            {{cor}} {{i}}
+        </h1>
+    </template>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            cores: ['azul', 'verde', 'vermelho', 'rosa'],
+            pessoas:[{name: 'Leonardo', idada: 23 , peso: 77.5},
+            {name: 'Luiza', idada: 24 , peso: 50.5}]
+        }
+    })
+</script>

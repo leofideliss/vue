@@ -1,0 +1,40 @@
+* {
+    font-family: 'Aboreto', cursive;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.box {
+    border: 1px solid;
+    box-shadow: 0px 0px 10px -2px #000000;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.bar {
+    width: 300px;
+    height: 30px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+.porcent{
+    margin-bottom: 10px;
+}
+.spacing{
+    width: 300px;
+}
+
+/* Classe auxiliares */
+
+.cm-text-center{
+    text-align: center;
+}
+

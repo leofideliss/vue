@@ -1,0 +1,20 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+
+<div id="app">
+
+</div>
+
+
+<script>
+    vm = new Vue({
+        el: '#app',
+        template: `<div>
+                    <p> {{ aula }} </p>
+                    <p> {{ modulo }} </p>
+                    </div>`,
+        data: {
+            aula: 'Usando template',
+            modulo: 'Instancia Vue'
+        }
+    })
+</script>

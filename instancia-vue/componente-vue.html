@@ -1,0 +1,49 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+
+<div id="app">
+    <comp>
+    </comp>
+    <comp>
+    </comp>
+    <comp>
+    </comp>
+</div>
+
+
+<script>
+    var todos = {
+        aula: 'Vue',
+        modulo: 'Instancia',
+
+    }
+
+    Vue.component('comp', {
+        template: `<div>
+                    <p> {{ aula }} </p>
+                    <p> {{ modulo }} </p>
+
+        <button @click="alterar">Alterar</button>
+ 
+                    </div>`,
+        data: function() {
+            return todos // Dessa forma todos os componentes compartilham os dados
+
+            return { // dessa forma cada componente tem seus próprios dados
+                aula: 'Vue',
+                modulo: 'Instancia',
+
+            }
+        },
+        methods: {
+            alterar() {
+                this.aula += "!!!!"
+                this.modulo += "????"
+            },
+
+        },
+    })
+    vm = new Vue({
+        el: '#app',
+
+    })
+</script>

@@ -1,0 +1,41 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+
+<div id="app1">
+    <p>{{titulo1}}</p>
+    <button @click="alterar"> Alterar </button>
+</div>
+
+<div id="app2">
+    <p>{{titulo2}}</p>
+    <button @click="alterar"> Alterar </button>
+</div>
+
+<script>
+    vm = new Vue({
+        el: '#app1',
+        data: {
+            titulo1: "Instancia 1"
+        },
+        methods: {
+            alterar() {
+                vm2.titulo2 += "!!!!!"
+            }
+        },
+    })
+
+    vm2 = new Vue({
+        el: '#app2',
+        data: {
+            titulo2: "Instancia 2"
+        },
+        methods: {
+            alterar() {
+                vm.titulo1 += "????"
+            }
+        },
+    })
+
+    setTimeout(() => {
+        vm.titulo1 = "Alterado fora da instancia Vue"
+    }, 2000);
+</script>

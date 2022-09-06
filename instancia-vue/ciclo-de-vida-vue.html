@@ -1,0 +1,40 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+
+<div id="app">
+    <h1>{{titulo}}</h1>
+    <button @click="alterar">Alterar</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: "Ciclo de vida"
+        },
+        beforeCreate() {
+            console.log("Instancia inicializada")
+        },
+        created() {
+            console.log("Depois de finalizar o processo de criação")
+        },
+        beforeMount() {
+            console.log("Antes do componente ser montado , ainda não é inserido no DOM")
+        },
+        mounted() {
+            console.log("Componente terminou de ser montado e é inserido na DOM")
+        },
+        beforeUpdate() {
+            console.log("Antes de Atualizar")
+        },
+        updated() {
+            console.log("Atualizar")
+
+        },
+        methods: {
+            alterar() {
+                this.titulo += "!!!"
+            }
+        },
+    })
+</script>

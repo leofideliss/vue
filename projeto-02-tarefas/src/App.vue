@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <h1>Tarefas</h1>
-	<Bar></Bar>
+	<Bar :tasks="tasks"></Bar>
 	<InputTask></InputTask>
-	<Tasks></Tasks>
+	<Tasks :tasks="tasks"></Tasks>
   </div>
 </template>
 
@@ -14,7 +14,13 @@ import Tasks from "@/components/Tasks.vue";
 
 export default {
   components: { Bar, InputTask, Tasks },
-};
+data(){
+	return{
+		tasks: []
+	}
+}
+}
+
 </script>
 
 <style>

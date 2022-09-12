@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <h1>Tarefas</h1>
-	<Bar :tasks="tasks"></Bar>
-	<InputTask></InputTask>
-	<Tasks :tasks="tasks"></Tasks>
+    <Bar :progress="calcProgress"></Bar>
+    <InputTask></InputTask>
+    <Tasks :tasks="tasks"></Tasks>
   </div>
 </template>
 
@@ -14,13 +14,34 @@ import Tasks from "@/components/Tasks.vue";
 
 export default {
   components: { Bar, InputTask, Tasks },
-data(){
-	return{
-		tasks: []
-	}
-}
-}
+  data() {
+    return {
+      tasks: [],
+      progress: 0,
+    };
+  },
+  // watch: {
+  //   tasks() {
+  //     let total = calcProgress(this.tasks)
+  //     this.progress = total
+  //   },
+  // },
+  computed: {
+    calcProgress() {
+      let trues = 0;
+      let falses = 0;
+      let result = 0;
+      this.tasks.forEach((element) => {
+        if (element.finish == false) falses++;
+        else trues++;
+      });
 
+      result = (trues * 100) / this.tasks.length;
+      // console.log(result,trues);
+      return Math.round(result) || 0;
+    },
+  },
+};
 </script>
 
 <style>

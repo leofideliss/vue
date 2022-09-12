@@ -1,35 +1,16 @@
 <template>
   <div class="bar">
-    <div class="progress" :style="progressBar"></div>
+    <div class="progress" :style="{width: progress +`%`}"></div>
+    <p>{{ progress + "%"}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["tasks"],
+  props: ["progress"],
 
-  computed: {
-    progressBar() {
-      return {
-        widht: this.fillBar + "px",
-      };
-    },
-  },
-  watch: {
-    tasks() {},
-  },
-  methods: {
-    fillBar() {
-      let trues = 0;
-      let falses = 0;
-      let total = this.task.length;
-      this.task.forEach((element) => {
-        element.finish == false ? falses++ : trues++;
-      });
-
-      return (trues * 100) / total;
-    },
-  },
+  computed: {},
+  watch: {},
 };
 </script>
 
@@ -39,10 +20,12 @@ export default {
   height: 30px;
   border: 1px solid #dcdcdc;
   margin: 15px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 .progress {
   background-color: green;
-  width: 0%;
+
   height: 100%;
 }
 </style>

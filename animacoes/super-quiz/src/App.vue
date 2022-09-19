@@ -1,8 +1,14 @@
 <template>
   <div id="app">
     <h1>Super Quiz</h1>
-	<QuestionVue v-if="questionMode" :question="questions[currentQuestion]" />
-	<ResultVue v-else :results="result"/>
+    <transition name="flip" mode="out-in">
+      <QuestionVue
+        @answered="showResult"
+        v-if="questionMode"
+        :question="questions[currentQuestion]"
+      />
+      <ResultVue @confirmed="nextQuestion" v-else :result="result" />
+    </transition>
   </div>
 </template>
 
@@ -13,7 +19,18 @@ import ResultVue from "./components/Result.vue";
 export default {
   components: { questions, QuestionVue, ResultVue },
   data() {
-    return { result: false, questionMode: true, questions, currentQuestion : 0 };
+    return { result: false, questionMode: true, questions, currentQuestion: 0 };
+  },
+  methods: {
+    showResult(result) {
+      this.result = result;
+      this.questionMode = false;
+    },
+    nextQuestion() {
+      let r = Math.random() * this.questions.length;
+      this.currentQuestion = parseInt(r);
+      this.questionMode = true;
+    },
   },
 };
 </script>

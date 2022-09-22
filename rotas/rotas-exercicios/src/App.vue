@@ -1,22 +1,25 @@
 <template>
-	<div id="app">
-		<h1>Rotas com VueRouter</h1>
-		<menu-vue></menu-vue>
-		<router-view/>
-	</div>
+  <div id="app">
+    <h1>Rotas com VueRouter</h1>
+    <router-view name="Menu" />
+    <transition
+      enter-active-class="animate__animated animate__backInUp"
+      leave-active-class="animate__animated animate__backOutUp"
+      mode="out-in"
+    >
+      <router-view />
+    </transition>
+  </div>
 </template>
 
 <script>
-	import MenuVue from './components/template/Menu.vue';
-export default {
-	components:{MenuVue}
-}
+export default {};
 </script>
 
 <style>
-	#app {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>

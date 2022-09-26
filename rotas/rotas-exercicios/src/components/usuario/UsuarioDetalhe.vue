@@ -13,7 +13,11 @@
 <script>
 import { Hash } from 'crypto';
 
-export default {props:['id']};
+export default {props:['id'],
+beforeRouteEnter (to, from, next) {
+  console.log("dentro do componente -> usuario detalhe")
+  next()
+}};
 </script>
 
 <style>

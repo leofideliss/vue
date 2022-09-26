@@ -1,22 +1,29 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Usuario from '@/components/usuario/Usuario'
 import Inicio from '@/components/Inicio'
-import UsuarioLista from '@/components/usuario/UsuarioLista'
-import UsuarioDetalhe from '@/components/usuario/UsuarioDetalhe'
-import UsuarioEditar from '@/components/usuario/UsuarioEditar'
 import MenuVue from './components/template/Menu.vue';
 import MenuAltVue from './components/template/MenuAlt.vue';
+// import Usuario from '@/components/usuario/Usuario'
+// import UsuarioLista from '@/components/usuario/UsuarioLista'
+// import UsuarioDetalhe from '@/components/usuario/UsuarioDetalhe'
+// import UsuarioEditar from '@/components/usuario/UsuarioEditar'
 
 
 
 Vue.use(Router)
 
-export default new Router({
+// /* webpackChunkName: "usuario" */ serve para agrupar os componentes em um único arquivo para ser carregado em partes na aplicação 
+const Usuario = () => import(/* webpackChunkName: "usuario" */'@/components/usuario/Usuario')
+const UsuarioLista = () => import(/* webpackChunkName: "usuario" */'@/components/usuario/UsuarioLista')
+const UsuarioDetalhe = () => import(/* webpackChunkName: "usuario" */'@/components/usuario/UsuarioDetalhe')
+const UsuarioEditar = () => import(/* webpackChunkName: "usuario" */'@/components/usuario/UsuarioEditar')
+
+const router = new Router({
     mode: 'history',
+    // move a pagina até determinado #id
     scrollBehavior(to) {
         if (to.hash) {
-            return { selector: to.hash }
+            // return { selector: to.hash }
         }
     },
     routes: [{
@@ -37,7 +44,12 @@ export default new Router({
         props: true,
         children: [
             { path: '', component: UsuarioLista },
-            { path: ':id', component: UsuarioDetalhe, props: true },
+            {
+                path: ':id', component: UsuarioDetalhe, props: true, beforeEnter: (to, from, next) => {
+                    console.log("Antes da rota -> usuario detalhe")
+                    next()
+                }
+            },
             { path: ':id/editar', component: UsuarioEditar, props: true, name: "editarUsuario" },
         ]
     },
@@ -51,4 +63,8 @@ export default new Router({
     }]
 })
 
-
+router.beforeEach((to, from, next) => {
+    console.log("Antes das rotas -> global")
+    next()
+})
+export default router

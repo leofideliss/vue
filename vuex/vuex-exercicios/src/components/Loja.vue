@@ -19,12 +19,12 @@ export default {
     };
   },
   computed: {
-    quantidade() {return this.$store.state.quantidade},
-    preco() {return this.$store.state.preco},
+    quantidade() {return this.$store.state.parametros.quantidade},
+    preco() {return this.$store.state.parametros.preco},
 
   },
   methods: {
-    ...mapActions(["adicionarProduto"]),
+    ...mapActions('carrinho',["adicionarProduto"]),
     adicionar() {
       const produto = {
         id: this.sequencia,

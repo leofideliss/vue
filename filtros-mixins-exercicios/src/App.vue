@@ -26,6 +26,7 @@ export default {
 	components: { Frutas },
 	mixins: [frutasMixin, usuarioMixin],
 	filters: {
+		
 		cpf(valor) {
 			const arr = valor.split('')
 			arr.splice(3, 0, '.')

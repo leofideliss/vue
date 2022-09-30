@@ -67,4 +67,4 @@ router.beforeEach((to, from, next) => {
     console.log("Antes das rotas -> global")
     next()
 })
-export default router
+export default router 

@@ -28,8 +28,8 @@
           </v-menu>
         </div>
       </template>
-      <v-toolbar-items
-        ><v-btn to="/acoes" text> Saldo: {{ saldo }} </v-btn></v-toolbar-items
+      <v-toolbar-items 
+        ><v-btn text > <span class="positivo" :class={negativo:statusSaldo}> Saldo: {{ moeda }} </span> </v-btn></v-toolbar-items
       >
     </v-toolbar>
   </nav>
@@ -37,17 +37,69 @@
 
 <script>
 export default {
-  filters: {
-    moeda(valor){
-
-    },
-  },
   data: () => ({
     items: [{ title: "Salvar Dados" }, { title: "Carregar Dados" }],
   }),
   computed: {
     saldo() {
       return this.$store.state.saldo;
+    },
+    moeda() {
+      let tamArraySaldo = this.saldo.toString().length;
+      const arr = this.saldo.toString().split("");
+
+      switch (tamArraySaldo) {
+        case 4:
+          arr.splice(1, 0, ".");
+          break;
+        case 5:
+          arr.splice(2, 0, ".");
+          break;
+        case 6:
+          arr.splice(3, 0, ".");
+          break;
+        case 7:
+          arr.splice(4, 0, ".");
+          arr.splice(1, 0, ".");
+
+          break;
+        case 8:
+          arr.splice(5, 0, ".");
+          arr.splice(2, 0, ".");
+
+          break;
+        case 9:
+          arr.splice(6, 0, ".");
+          arr.splice(3, 0, ".");
+
+          break;
+        case 10:
+          arr.splice(7, 0, ".");
+          arr.splice(4, 0, ".");
+          arr.splice(1, 0, ".");
+          break;
+        case 11:
+          arr.splice(8, 0, ".");
+          arr.splice(5, 0, ".");
+          arr.splice(2, 0, ".");
+
+          break;
+        case 12:
+          arr.splice(9, 0, ".");
+          arr.splice(6, 0, ".");
+          arr.splice(3, 0, ".");
+          break;
+      }
+
+      arr.splice(arr.length, 0, ",00"); // adiciona ,00 no final
+      arr.splice(0, 0, "R$ "); // adiciona o simbolo da moeda no inicio
+
+      return arr.join("");
+    },
+    statusSaldo() {
+      if (this.saldo > 0) return false;
+
+      return true;
     },
   },
 };
@@ -56,5 +108,14 @@ export default {
   <style>
 .list-item {
   cursor: pointer;
+}
+
+.positivo {
+  color: green;
+}
+
+.negativo {
+  text-decoration: underline;
+  color: red;
 }
 </style>

@@ -10,7 +10,7 @@
       <v-toolbar-items><v-btn to="/acoes" text> Ações </v-btn></v-toolbar-items>
 
       <v-spacer></v-spacer>
-      <v-toolbar-items><v-btn text> Finalizar Dia </v-btn></v-toolbar-items>
+      <v-toolbar-items><v-btn @click="finalizarDia" text> Finalizar Dia </v-btn></v-toolbar-items>
 
       <template>
         <div class="text-center">
@@ -47,6 +47,11 @@ export default {
   statusSaldo(){
     return this.$store.getters.statusSaldo
   }
+ },
+ methods:{
+  finalizarDia(){
+      this.$store.commit("finalizarDia")
+    }
  }
 };
 </script>

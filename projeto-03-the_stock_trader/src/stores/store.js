@@ -5,20 +5,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+
         saldo: 10000,
         acoes: [
-            { nome: "AUDI", precoAtual: 100 },
-            { nome: "BMW", precoAtual: 120 },
-            { nome: "Mercedes", precoAtual: 69 },
-            { nome: "Honda", precoAtual: 184 },
-            { nome: "IBM", precoAtual: 25 },
-            { nome: "Multilaser", precoAtual: 157 },
-            { nome: "Logitech", precoAtual: 155 },
-            { nome: "Asus", precoAtual: 99 },
+            { qtd: 0, nome: "AUDI", preco: 100 },
+            { qtd: 0, nome: "BMW", preco: 120 },
+            { qtd: 0, nome: "Mercedes", preco: 69 },
+            { qtd: 0, nome: "Honda", preco: 184 },
+            { qtd: 0, nome: "IBM", preco: 25 },
+            { qtd: 0, nome: "Multilaser", preco: 157 },
+            { qtd: 0, nome: "Logitech", preco: 155 },
+            { qtd: 0, nome: "Asus", preco: 99 },
         ],
         acoesAdquiridas: [
-            { nome: "Logitech", precoComprado: 155 },
-            { nome: "Asus", precoComprado: 99 },]
+        ],
     },
     /** É NECESSÁRIO PASSAR O STATE PARA OS GETTERS --- NÃO É POSSÍVEL ACESSAR USANDO 'this' AQUI */
     getters: {
@@ -83,15 +83,26 @@ export default new Vuex.Store({
             return true;
         },
 
-   
+
     },
-    mutations:{
+    mutations: {
         comprarAcoes(state, acao) {
-            if (state.saldo - acao.precoAtual >= 0) {
-                state.saldo -= acao.precoAtual
+            if (state.saldo - acao.preco >= 0) {
+                state.saldo -= acao.preco
                 state.acoesAdquiridas.push(acao)
             }
         },
+        finalizarDia(state) {
+            state.acoes.forEach(element => {
+                let variacao = Math.round(Math.random() * 10)
+                let operacao = Math.round(Math.random() * 1)
+
+                if (operacao == 1)
+                    element.preco += variacao
+                else
+                    element.preco -= variacao
+            });
+        }
 
     }
 })

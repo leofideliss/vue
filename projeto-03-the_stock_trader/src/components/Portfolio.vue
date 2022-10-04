@@ -1,13 +1,15 @@
 <template>
   <v-container fluid>
     <v-row class="mt-2" justify="center">
-      <div v-for="acao in acoes" :key="acao.id">
+      <div v-for="acao in acoes" :key="acao.nome">
         <BoxVue :cor="corBox">
-          <template v-slot:nome>
-            <span class="box-title" text small>{{ acao.nome }}</span>
+             <template v-slot:nome>
+            <span class="box-title" text small>{{ 
+              acao.nome + " (Preço: R$" + acao.precoAtual+ ")" 
+            }}</span>
           </template>
           <template v-slot:btn>
-            <v-btn text small class="mr-2">Comprar</v-btn>
+            <v-btn text small class="mr-2" @click="comprarAcao">Comprar</v-btn>
           </template>
         </BoxVue>
       </div>
@@ -17,16 +19,25 @@
 
 <script>
 import BoxVue from "./utilitarios/Box.vue";
-import acoes from "@/mixins/acoes";
 
 export default {
-  mixins: [acoes],
   data() {
     return {
       corBox: "green",
     };
   },
   components: { BoxVue },
+  computed:{
+    acoes(){
+      return this.$store.state.acoes
+    },
+  
+  },
+  methods:{
+  comprarAcao(){
+       this.$store.commit("comprarAcoes", { nome: "Asus", precoAtual: 99 });
+    }
+  }
 };
 </script>
 

@@ -5,7 +5,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        saldo: 10000
+        saldo: 10000,
+        acoes: [
+            { nome: "AUDI", precoAtual: 100 },
+            { nome: "BMW", precoAtual: 120 },
+            { nome: "Mercedes", precoAtual: 69 },
+            { nome: "Honda", precoAtual: 184 },
+            { nome: "IBM", precoAtual: 25 },
+            { nome: "Multilaser", precoAtual: 157 },
+            { nome: "Logitech", precoAtual: 155 },
+            { nome: "Asus", precoAtual: 99 },
+        ],
+        acoesAdquiridas: [
+            { nome: "Logitech", precoComprado: 155 },
+            { nome: "Asus", precoComprado: 99 },]
     },
     /** É NECESSÁRIO PASSAR O STATE PARA OS GETTERS --- NÃO É POSSÍVEL ACESSAR USANDO 'this' AQUI */
     getters: {
@@ -68,6 +81,16 @@ export default new Vuex.Store({
             if (state.saldo > 0) return false;
 
             return true;
+        },
+
+   
+    },
+    mutations:{
+        comprarAcoes(state, acao) {
+            if (state.saldo - acao.precoAtual >= 0) {
+                state.saldo -= acao.precoAtual
+                state.acoesAdquiridas.push(acao)
+            }
         },
 
     }

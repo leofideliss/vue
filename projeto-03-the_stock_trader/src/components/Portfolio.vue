@@ -35,7 +35,8 @@ export default {
   },
   methods:{
   comprarAcao(){
-       this.$store.commit("comprarAcoes", { nome: "Asus", precoAtual: 99 });
+    let acao = { nome: "Asus", precoAtual: 99 }
+       this.$store.commit("comprarAcoes",acao );
     }
   }
 };

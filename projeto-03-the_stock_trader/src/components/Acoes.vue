@@ -20,17 +20,18 @@
 <script>
 import BoxVue from "./utilitarios/Box.vue";
 export default {
+  components: { BoxVue },
+
   comptued: {
-    acoesAdquiridas() {
+    acoesAdquiridas(){
       return this.$store.state.acoesAdquiridas
-    },
+    }
   },
   data() {
     return {
       corBox: "#2510a3",
     };
   },
-  components: { BoxVue },
 };
 </script>
 

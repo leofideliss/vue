@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row class="mt-2" justify="center">
-      <div v-for="acaoPortifolio in acoes" :key="acaoPortifolio.nome">
+      <div v-for="acaoPortifolio in arrayAcoes" :key="acaoPortifolio.nome">
         <BoxVue :cor="corBox">
           <template v-slot:nome>
             <span class="box-title" text small>{{
@@ -27,18 +27,17 @@
 
 <script>
 import BoxVue from "./utilitarios/Box.vue";
-
+import axios from "axios";
 export default {
   data() {
     return {
       corBox: "green",
+      arrayAcoes: [],
     };
   },
   components: { BoxVue },
   computed: {
-    acoes() {
-      return this.$store.state.acoes;
-    },
+ 
   },
   methods: {
     comprarAcao(acao) {
@@ -50,7 +49,17 @@ export default {
       this.$store.commit("comprarAcoes", acaoNova);
       acao.qtd = 0;
     },
-    
+
+    loadAcoes() {
+      const url = "http://localhost:3000/acoes";
+      axios.get(url).then((res) => {
+        this.arrayAcoes = res.data;
+        console.log(this.arrayAcoes);
+      });
+    },
+  },
+  mounted() {
+    this.loadAcoes();
   },
 };
 </script>

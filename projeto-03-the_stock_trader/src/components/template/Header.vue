@@ -10,26 +10,34 @@
       <v-toolbar-items><v-btn to="/acoes" text> Ações </v-btn></v-toolbar-items>
 
       <v-spacer></v-spacer>
-      <v-toolbar-items><v-btn @click="finalizarDia" text> Finalizar Dia </v-btn></v-toolbar-items>
+      <v-toolbar-items
+        ><v-btn @click="finalizarDia" text>
+          Finalizar Dia
+        </v-btn></v-toolbar-items
+      >
 
       <template>
         <div class="text-center">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn text v-bind="attrs" v-on="on"> Salvar & Carregar </v-btn>
+              <v-btn text v-bind="attrs" v-on="on">
+                Salvav/Carregar & Config.
+              </v-btn>
             </template>
             <v-list>
-              <v-list-item v-for="(item, index) in items" :key="index">
-                <v-list-item-title class="list-item">{{
-                  item.title
-                }}</v-list-item-title>
-              </v-list-item>
+              <v-list-item> Salvar Dados </v-list-item>
+              <v-list-item> Carregar Dados </v-list-item>
+              <v-list-item to="/formAcoes"> Add. Ações </v-list-item>
             </v-list>
           </v-menu>
         </div>
       </template>
-      <v-toolbar-items 
-        ><v-btn text > <span class="positivo" :class={negativo:statusSaldo}> Saldo: {{ moeda }} </span> </v-btn></v-toolbar-items
+      <v-toolbar-items
+        ><v-btn text>
+          <span class="positivo" :class="{ negativo: statusSaldo }">
+            Saldo: {{ moeda }}
+          </span>
+        </v-btn></v-toolbar-items
       >
     </v-toolbar>
   </nav>
@@ -37,22 +45,20 @@
 
 <script>
 export default {
-  data: () => ({
-    items: [{ title: "Salvar Dados" }, { title: "Carregar Dados" }],
-  }),
- computed:{
-  moeda(){
-    return this.$store.getters.moeda
+ 
+  computed: {
+    moeda() {
+      return this.$store.getters.moeda;
+    },
+    statusSaldo() {
+      return this.$store.getters.statusSaldo;
+    },
   },
-  statusSaldo(){
-    return this.$store.getters.statusSaldo
-  }
- },
- methods:{
-  finalizarDia(){
-      this.$store.commit("finalizarDia")
-    }
- }
+  methods: {
+    finalizarDia() {
+      this.$store.commit("finalizarDia");
+    },
+  },
 };
 </script>
   

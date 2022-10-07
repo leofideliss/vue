@@ -14,5 +14,23 @@ module.exports = app => {
             .then(acoes => res.json(acoes))
             .catch(err => res.status(500).send(err))
     }
-    return { save, get }
+
+    const buy = (req, res) => {
+        const acao = {...req.body}
+
+        app.db('acoesAdiquiridas')
+        .insert(acao)
+        .then(()=>res.status(204).send())
+        .catch(err => res.status(500).send(err))
+        
+    }
+
+    const getCompradas = (req, res) => {
+        app.db('acoesAdiquiridas')
+            .select('id', 'qtd', 'nome', 'preco')
+            .then(acoes => res.json(acoes))
+            .catch(err => res.status(500).send(err))
+    }
+
+    return { save, get ,buy , getCompradas }
 }

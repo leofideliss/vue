@@ -41,12 +41,13 @@ export default {
   },
   methods: {
     comprarAcao(acao) {
-      let acaoNova = {
-        qtdComprada: acao.qtd,
-        nome: acao.nome,
-        preco: acao.preco,
-      };
-      this.$store.commit("comprarAcoes", acaoNova);
+      const url = "http://localhost:3000/comprar/acao";
+
+      axios.post(url,acao)
+      .then(()=>{
+        console.log('metodo comprar acao')
+      })
+
       acao.qtd = 0;
     },
 
